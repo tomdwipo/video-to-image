@@ -129,20 +129,23 @@ def process_video(
 
         elif args.interval:
             info = extractor.get_video_info()
-            total_frames = int(info["duration"] / args.interval)
+            total_video_frames = info["frame_count"]
+            duration = info["duration"]
+            estimated_frames = int(duration / args.interval)
+
+            interval_frames = max(1, total_video_frames // estimated_frames)
+
             print(f"\n🎬 Extracting every {args.interval}s from {video_path.name}")
-            print(f"   Estimated frames: ~{total_frames}")
+            print(f"   Estimated frames: ~{estimated_frames}")
 
             with tqdm(
-                total=total_frames,
+                total=estimated_frames,
                 desc=f"  [{video_index}/{len(args.videos)}]",
                 unit="frame",
             ) as pbar:
                 extracted = []
                 import cv2
                 cap = extractor._open_video()
-                fps = extractor._get_fps()
-                interval_frames = int(fps * args.interval) or 1
                 frame_position = 0
                 frame_index = 1
 
