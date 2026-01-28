@@ -9,7 +9,8 @@ build/
 
 venv/
 env/
-.venv
+.venv/
+uv.lock
 
 .idea/
 .vscode/

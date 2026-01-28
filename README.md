@@ -4,18 +4,41 @@ Extract frames from video files via command line. Supports MP4, AVI, MOV, MKV fo
 
 ## Installation
 
+This project uses [uv](https://github.com/astral-sh/uv) for fast dependency management.
+
 ```bash
+# Install uv (one-time setup)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # Install dependencies
+uv sync
+```
+
+### Alternative: Using pip
+
+```bash
 pip install -r requirements.txt
 ```
 
 ## Requirements
 - Python 3.8+
-- OpenCV (installed via requirements.txt)
+- OpenCV (installed via uv or pip)
 
 ## Usage
 
+### With uv (recommended)
+
 ```bash
+uv run python run.py <video_file> [options]
+```
+
+### With venv activation
+
+```bash
+# Activate venv
+source .venv/bin/activate
+
+# Run
 python run.py <video_file> [options]
 ```
 
