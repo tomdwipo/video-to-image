@@ -62,3 +62,17 @@ For batch processing (multiple videos), each video gets its own subdirectory to 
 - `requirements.txt` - Kept for pip compatibility, should match pyproject.toml
 - `.venv/` - UV-managed virtual environment (gitignored)
 - `uv.lock` - Auto-generated lock file for reproducible builds (gitignored)
+
+## Important Implementation Notes
+
+### Interval Frame Calculation
+When using `--interval`, the code calculates `interval_frames` based on **total frame count**, not FPS. This is because MOV files from iPhones use variable frame rate (VFR), making FPS-based calculations unreliable.
+
+Correct approach (run.py lines 132-136):
+```python
+total_video_frames = info["frame_count"]
+estimated_frames = int(duration / args.interval)
+interval_frames = max(1, total_video_frames // estimated_frames)
+```
+
+**Do NOT use:** `interval_frames = int(fps * interval)` - this will fail on VFR videos.
