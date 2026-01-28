@@ -6,15 +6,18 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+.wheel/
 
 venv/
 env/
 .venv/
 uv.lock
+.python-version
 
 .idea/
 .vscode/
 *.swp
+*.swo
 
 input/*
 output/*
@@ -22,6 +25,20 @@ output/*
 !output/.gitkeep
 
 .DS_Store
+Thumbs.db
 
 firebase-debug.log
 *.log
+
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.hypothesis/
+
+# Test videos and images (uncomment if needed)
+# input/*.mp4
+# input/*.mov
+# input/*.avi
+# output/*.jpg
+# output/*.png
