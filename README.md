@@ -126,3 +126,7 @@ output/
 **Memory errors with large videos**
 - Reduce interval to extract fewer frames
 - Use `--count` for fixed frame extraction
+
+## Architecture
+
+For detailed system architecture, data flow, and component documentation, see [Architecture](/.docs/architecture.md).
